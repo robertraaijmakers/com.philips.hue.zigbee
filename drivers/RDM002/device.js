@@ -15,13 +15,19 @@ class TapDialSwitch extends ZigBeeDevice {
     this.printNode();
 
     const node = await this.homey.zigbee.getNode(this);
+    this._previousHandleFrame = node.handleFrame;
     node.handleFrame = (endpointId, clusterId, frame, meta) => {
+      // Preserve and call previous handler to avoid suppressing other frame processing
+      if (typeof this._previousHandleFrame === 'function') {
+        this._previousHandleFrame(endpointId, clusterId, frame, meta);
+      }
       this.log("endpointId: ", endpointId,", clusterId: ", clusterId,", frame: ", frame, ", meta: ", meta);
       if  ( clusterId === 64512 ) {
         this._buttonCommandParser(frame);
       }
       if ((endpointId === 1)
           && (clusterId === 1) // cluster 1 - powerConfiguration
+          && (Buffer.isBuffer(frame) && frame.length >= 7)
           && (frame.readUInt8(3) === 0x21) // attribute 33 - batteryPercentageRemaining
       ) {
           // Example frame: Buffer 18 01 01 21 00 00 20 c8
