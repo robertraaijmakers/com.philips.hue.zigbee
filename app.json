@@ -38,13 +38,13 @@
     ]
   },
   "author": {
-    "name": "Johan Bendz",
-    "email": "homey@bortbytt.se"
+    "name": "Robert Raaijmakers",
+    "email": "dutchfighter@live.nl"
   },
   "contributing": {
     "donate": {
       "paypal": {
-        "username": "JohanBendz"
+        "username": "RobertRaaijmakers"
       }
     }
   },
@@ -71,14 +71,14 @@
   "speech": [],
   "permissions": [],
   "bugs": {
-    "url": "https://github.com/JohanBendz/com.philips.hue.zigbee/issues"
+    "url": "https://github.com/robertraaijmakers/com.philips.hue.zigbee/issues"
   },
-  "source": "https://github.com/JohanBendz/com.philips.hue.zigbee",
+  "source": "https://github.com/robertraaijmakers/com.philips.hue.zigbee",
   "platforms": [
     "local"
   ],
   "homeyCommunityTopicId": 29734,
-  "support": "https://github.com/JohanBendz/com.philips.hue.zigbee/issues",
+  "support": "https://github.com/robertraaijmakers/com.philips.hue.zigbee/issues",
   "flow": {
     "conditions": [
       {
