@@ -24,9 +24,29 @@ Cluster.addCluster(HueSpecificCluster); */
 
 class Light extends ZigBeeLightDevice {
 
- 	async onNodeInit({zclNode}) {
+ 	async onNodeInit({zclNode, node}) {
 
-        await super.onNodeInit({zclNode});
+        // Log raw device properties as soon as the node is available, even if
+        // super.onNodeInit() below throws or the device fails to fully init.
+        try {
+            const manufacturerName = node?.manufacturerName ?? zclNode?.node?.manufacturerName;
+            const modelId = node?.productId ?? zclNode?.node?.productId ?? zclNode?.node?.modelId;
+            const endpointsInfo = Object.entries(zclNode.endpoints || {}).reduce((acc, [id, endpoint]) => {
+                acc[id] = Object.keys(endpoint.clusters || {});
+                return acc;
+            }, {});
+            this.log('onNodeInit -> manufacturerName:', manufacturerName, 'modelId:', modelId);
+            this.log('onNodeInit -> endpoints/clusters:', JSON.stringify(endpointsInfo));
+        } catch (err) {
+            this.error('onNodeInit -> failed to log device properties', err);
+        }
+
+        try {
+            await super.onNodeInit({zclNode});
+        } catch (err) {
+            this.error('onNodeInit -> super.onNodeInit failed', err);
+            throw err;
+        }
 
         this.printNode();
 

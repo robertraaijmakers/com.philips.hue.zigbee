@@ -5,7 +5,7 @@ const Homey = require("homey");
 // Enable zigbee-cluster logging
 const { debug } = require('zigbee-clusters');
 
-// debug(true);
+debug(true);
 
 class PhilipsHueZigbeeApp extends Homey.App {
   onInit() {
