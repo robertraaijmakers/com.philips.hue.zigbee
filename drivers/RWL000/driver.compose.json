@@ -9,7 +9,8 @@
     "small": "{{driverAssetsPath}}/images/small.png"
   },
   "capabilities": [
-    "alarm_battery"
+    "alarm_battery",
+    "measure_battery"
   ],
   "energy": {
     "batteries": [

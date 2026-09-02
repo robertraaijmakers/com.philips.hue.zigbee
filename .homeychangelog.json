@@ -152,7 +152,7 @@
   "2.1.0": {
     "en": "Updated Homey Zigbee modules and added Contact Sensor."
   },
-  "3.0.0": {
-    "en": "Updated the app, devices are now in line with SDKv3, fixed Contact Sensor support. Updated some other drivers to use the new Homey Zigbee Protocols."
+  "2.1.1": {
+    "en": "Added support for ST64 Hue white filament Edison (LWV005) and ST64 Hue white Ambiance filament Edison (LTV001) bulbs."
   }
 }
